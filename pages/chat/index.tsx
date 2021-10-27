@@ -6,15 +6,18 @@ import SearchSide from "../../components/Search/Search";
 import { useState, useEffect, useContext } from "react";
 import { SocketContext } from "../../contexts/socketContext";
 import ListDiscover from "../../components/List-Chat/ListDiscover";
-import { JsonWebTokenError } from "jsonwebtoken";
+
 
 const Chat: NextPage = () => {
   // @ts-ignore
   const { socket, setSocket } = useContext(SocketContext);
+
+
   const [listChats, setListChats] = useState<Array<any>>();
   const [listDiscover, setDiscover] = useState<Array<any>>();
   const [activeSearch, setActiveSearch] = useState<boolean>(false);
   const [activeChannel, setActiveChannel] = useState<boolean>(true);
+
 
   useEffect(() => {
     const sockets = socket;
@@ -22,14 +25,8 @@ const Chat: NextPage = () => {
       console.log('conectado');
     })
     sockets.on("disconnect", () => {
-      console.log('desconectado');
-    });
-    sockets.on("status", (data: any) => {
-      console.log("hello", data);
-    });
+
   }, [])
-
-
 
 
   useEffect(() => {
